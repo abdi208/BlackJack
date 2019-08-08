@@ -1,5 +1,5 @@
-// var cardsvalue = {"ACE": 1, "2": 2,"3": 3, "4": 4, "5": 5,"6": 6,"7": 7,"8": 8,"9": 9, "10": 10, "JACK": 10,"QUEEN": 10,"KING": 10};
 
+//----set variables-----////
 var playerScore;
 var dealerScore;
 var deal;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded',function(e){
   
     
 })
-
+//---- set scores to 0-----//
 function initialize(){
     playerScore = 0;
     dealerScore = 0;
@@ -54,13 +54,10 @@ function addListeners(){
     reset.addEventListener('click', resetGame);
     
 }
+//--------- create cards and deal to either player of dealer upon event listener-----///
 
 function addCardToPile(handOwner){
-    // cardValue = cardsDealer[i].value;
-  for (let i = 0; i < cardsDealer.length; i++)  {
-    var cardValue = cardsDealer[i].value;
-    // console.log("this is the value of cards", cardValue)
-  }
+ 
 
 // =========
     let card = allCards.pop();
@@ -94,7 +91,7 @@ function addCardToPile(handOwner){
 }
   
 
-   
+ //---start the game and deal the two intial cards ----//  
 function dealCard(){
     console.log('hello');
     gameStarted = true;
@@ -112,28 +109,12 @@ function dealCard(){
      // should be shuffled
 
     for(var i = 0; i < 2; i++) {
-    // Get card for player
-    // let card1 = allCards.pop();
-    // cardsPlayer.push(card1); // deals one card to player
-    // var cardImg1 = document.createElement('img');
-    // cardImg1.classList.add('img');
-    // cardImg1.src = card1.image;
-    // playersCard.appendChild(cardImg1);
-    // playerScore += parseInt(card1.value);
-    // console.log("player score is:", playerScore);
-
-    // // Deal to dealer
-    // let card2 = allCards.pop();
-    // cardsDealer.push(card2)
-    // var cardImg2 = document.createElement('img');
-    // cardImg2.classList.add('img');
-    // cardImg2.src = card2.image;
-    // dealersCard.appendChild(cardImg2);
     addCardToPile('d');
     addCardToPile('p');
     }
 }
 
+// ---- player hits stay annd the dealer is given cards until he wins or loses--///
 function newFunc(){
     console.log('the newfunc function is active')
     while(dealerScore < 16){
@@ -144,44 +125,22 @@ function newFunc(){
     checkForWinner();
 }
 
-
+//---give player card when event list3ener is hit-----/////
 function hitplayer(e){
   if(cardsPlayer.length < 5){
       addCardToPile('p');
 
-
-
-
-      // let newCard = allCards.pop();
-      // console.log(newCard.value);
-      // cardsPlayer.push(newCard)
-      // var cardImg = document.createElement('img');
-      // cardImg.classList.add('img');
-      // cardImg.src = newCard.image;
-      // playersCard.appendChild(cardImg); 
-      // playerScore += parseInt(newCard.value);
-      // console.log("player score is:", playerScore);
-      
-      
-  }
+      }
   checkForWinner();
 }   
 
 
-
+//---give dealer card when event list3ener is hit-----/////
 function hitdealer(e){
 
   if(cardsDealer.length < 5){
     addCardToPile('d');
-    //   let newCard2 = allCards.pop();
-    //   cardsDealer.push(newCard2)
-    //   var cardImg = document.createElement('img');
-    //   cardImg.classList.add('img');
-    //   cardImg.src = newCard2.image;
-    //   dealersCard.appendChild(cardImg);
-    //   console.log(newCard2.value)
-      
-    // }
+ 
     playerhit.removeEventListener('click', hitplayer);
     
 
@@ -192,7 +151,7 @@ function hitdealer(e){
   
 function checkForWinner(){
     console.log('checkForWinner is running');
-    // create another if else with the conidition that stay button was clicked
+    
 
 
     if(playerScore === 21){
@@ -215,12 +174,12 @@ function checkForWinner(){
     }else if (dealerScore > playerScore) {
         gameover = true
         displayMessage('dealer wins');
+    }else if(playerScore === dealerScore){
+    displayMessage('Its a Draw');
+    gameover = true;
+    
     }
-    // else if(playerScore === dealerScore){
-    // // displayMessage('Its a Draw');
-    // // gameover = true;
-    // // }
-    // checkForWinner();
+   
 }
 
 
