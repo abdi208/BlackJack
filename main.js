@@ -174,11 +174,8 @@ function checkForWinner(){
     }else if (dealerScore > playerScore) {
         gameover = true
         displayMessage('dealer wins');
-    }else if(playerScore === dealerScore){
-    displayMessage('Its a Draw');
-    gameover = true;
-    
     }
+   
    
 }
 
